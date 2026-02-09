@@ -82,3 +82,15 @@ export function Login({ onLogin }: LoginProps) {
     </form>
   );
 }
+
+// Consigli soluzione
+
+// Errore nel nome della prop della checkbox: "name="remeber"" invece di "remember". Questo causa la disconnessione dello stato tra l'input e l'oggetto dati, impedendo il funzionamento corretto della checkbox. Correzione: <input ... name="remember" ... />
+
+// Tipo di input errato per username: viene utilizzato "type="username"", che non è un tipo HTML valido. Deve essere "text". Correzione: <input type="text" name="username" ... />
+
+// Il pulsante Reset ha type="submit", quindi esegue erroneamente il submit del form. Deve avere type="button" per solo azzerare i campi. Correzione: <button type="button" onClick={handleReset}>Reset</button>
+
+// Nel gestore di submit del form, il tipo dell'evento è indicato come React.ChangeEvent<HTMLFormElement>, ma per gli eventi di submit è consigliabile usare React.FormEvent<HTMLFormElement> per coerenza e sicurezza di tipo. Correzione: function handleLogin(event: React.FormEvent<HTMLFormElement>) { ... }
+
+// Suggerimento: Per migliorare la chiarezza e tipo del codice, puoi tipizzare lo stato data con <LoginData>: const [data, setData] = useState<LoginData>({ ... });
